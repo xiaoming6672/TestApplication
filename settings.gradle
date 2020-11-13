@@ -1,0 +1,5 @@
+include ':testcalendar'
+rootProject.name='TestApplication'
+include ':app'
+include ':testAnimation'
+include ':testDividerItemDecoration'
