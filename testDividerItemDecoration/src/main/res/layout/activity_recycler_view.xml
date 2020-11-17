@@ -7,11 +7,130 @@
     android:background="#111111"
     tools:context=".activity.RecyclerViewActivity">
 
+    <HorizontalScrollView
+        android:id="@+id/view_layout_manager_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_linear_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClickLayoutManagerButton"
+                android:text="线性垂直" />
+
+            <Button
+                android:id="@+id/btn_linear_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClickLayoutManagerButton"
+                android:text="线性水平" />
+
+            <Button
+                android:id="@+id/btn_grid_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClickLayoutManagerButton"
+                android:text="表格垂直" />
+
+            <Button
+                android:id="@+id/btn_grid_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClickLayoutManagerButton"
+                android:text="表格水平" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <RadioGroup
+        android:id="@+id/view_radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checkedButton="@id/rb_custom"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/view_layout_manager_btn">
+
+        <RadioButton
+            android:id="@+id/rb_custom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自定义"
+            android:textColor="#FFF" />
+
+        <RadioButton
+            android:id="@+id/rb_fdidiver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FDivider"
+            android:textColor="#FFF" />
+
+        <RadioButton
+            android:id="@+id/rb_androidx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AndroidX"
+            android:textColor="#FFF" />
+    </RadioGroup>
+
+    <HorizontalScrollView
+        android:id="@+id/view_decoration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/view_radio_group">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_clear_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClickDecorationButton"
+                android:text="清空" />
+
+            <Button
+                android:id="@+id/btn_add_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClickDecorationButton"
+                android:text="添加列表垂直方向" />
+
+            <Button
+                android:id="@+id/btn_reduce_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClickDecorationButton"
+                android:text="减少列表垂直方向" />
+
+            <Button
+                android:id="@+id/btn_add_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClickDecorationButton"
+                android:text="添加列表水平方向" />
+
+            <Button
+                android:id="@+id/btn_reduce_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClickDecorationButton"
+                android:text="减少列表水平方向" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="#FFF"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="#F1F1F1"
+        app:layout_constraintTop_toBottomOf="@id/view_decoration" />
 </androidx.constraintlayout.widget.ConstraintLayout>
