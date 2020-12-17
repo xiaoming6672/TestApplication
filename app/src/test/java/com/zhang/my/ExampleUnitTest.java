@@ -5,6 +5,7 @@ import android.util.Log;
 import org.junit.Test;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -35,6 +36,9 @@ public class ExampleUnitTest {
         String yesterday = "2020-07-21 09:44:30";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault());
         Date yesterdayDate = sdf.parse(yesterday);
+        if (yesterdayDate == null) {
+            yesterdayDate = new Date();
+        }
 
 //        calendar1.setTime(date);
         calendar1.setTime(yesterdayDate);
@@ -73,4 +77,19 @@ public class ExampleUnitTest {
         String path = "";
         new File(path);
     }
+
+    @Test
+    public void compareTest() {
+        BigDecimal first = BigDecimal.TEN;
+        BigDecimal second = BigDecimal.TEN;
+
+        System.out.println("first = " + first + "  second = " + second + "  result = " + first.compareTo(second));
+
+        first = BigDecimal.ZERO;
+        System.out.println("first = " + first + "  second = " + second + "  result = " + first.compareTo(second));
+
+        first = new BigDecimal(100);
+        System.out.println("first = " + first + "  second = " + second + "  result = " + first.compareTo(second));
+    }
+
 }
