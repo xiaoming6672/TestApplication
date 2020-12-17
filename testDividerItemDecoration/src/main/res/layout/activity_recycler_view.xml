@@ -64,6 +64,13 @@
             android:textColor="#FFF" />
 
         <RadioButton
+            android:id="@+id/rb_custom_equal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自定义-均衡"
+            android:textColor="#FFF" />
+
+        <RadioButton
             android:id="@+id/rb_fdidiver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -129,8 +136,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_margin="5dp"
         android:background="#F1F1F1"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view_decoration" />
 </androidx.constraintlayout.widget.ConstraintLayout>

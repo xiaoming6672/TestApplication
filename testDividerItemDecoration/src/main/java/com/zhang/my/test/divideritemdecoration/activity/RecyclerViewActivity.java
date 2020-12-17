@@ -1,7 +1,5 @@
 package com.zhang.my.test.divideritemdecoration.activity;
 
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +10,7 @@ import com.sd.lib.views.utils.FDividerItemDecoration;
 import com.zhang.library.utils.context.ResUtils;
 import com.zhang.my.test.divideritemdecoration.R;
 import com.zhang.my.test.divideritemdecoration.adapter.RecyclerAdapter;
+import com.zhang.my.test.divideritemdecoration.view.EqualDividerItemDecoration;
 import com.zhang.my.test.divideritemdecoration.view.MyDividerItemDecoration;
 
 import java.util.ArrayList;
@@ -28,15 +27,12 @@ public class RecyclerViewActivity extends AppCompatActivity {
     private static final int TYPE_CUSTOM = 0;
     private static final int TYPE_F = 1;
     private static final int TYPE_ANDROIDX = 2;
+    private static final int TYPE_CUSTOM_EQUAL = 3;
 
     private RecyclerView rv_content;
 
     private int mType = TYPE_CUSTOM;
     private RecyclerAdapter adapter;
-
-    public static void start(Context context) {
-        context.startActivity(new Intent(context, RecyclerViewActivity.class));
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +48,9 @@ public class RecyclerViewActivity extends AppCompatActivity {
                     case R.id.rb_custom:
                     default:
                         mType = TYPE_CUSTOM;
+                        break;
+                    case R.id.rb_custom_equal:
+                        mType = TYPE_CUSTOM_EQUAL;
                         break;
                     case R.id.rb_fdidiver:
                         mType = TYPE_F;
@@ -145,6 +144,12 @@ public class RecyclerViewActivity extends AppCompatActivity {
                 }
                 decoration = mFV;
                 break;
+            case TYPE_CUSTOM_EQUAL:
+                if (mEqualV == null) {
+                    mEqualV = new EqualDividerItemDecoration(RecyclerView.VERTICAL, DIVIDER_SIZE, Color.RED);
+                }
+                decoration = mEqualV;
+                break;
             case TYPE_CUSTOM:
             default:
                 if (mMyV == null) {
@@ -176,6 +181,12 @@ public class RecyclerViewActivity extends AppCompatActivity {
                 }
                 decoration = mFH;
                 break;
+            case TYPE_CUSTOM_EQUAL:
+                if (mEqualH == null) {
+                    mEqualH = new EqualDividerItemDecoration(RecyclerView.HORIZONTAL, DIVIDER_SIZE, Color.RED);
+                }
+                decoration = mEqualH;
+                break;
             case TYPE_CUSTOM:
             default:
                 if (mMyH == null) {
@@ -193,6 +204,8 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
     private MyDividerItemDecoration mMyV;
     private MyDividerItemDecoration mMyH;
+    private EqualDividerItemDecoration mEqualV;
+    private EqualDividerItemDecoration mEqualH;
     private FDividerItemDecoration mFV;
     private FDividerItemDecoration mFH;
     private DividerItemDecoration mAndroidxV;
