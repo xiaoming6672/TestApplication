@@ -1,7 +1,9 @@
 package com.zhang.my.test.animator.activity;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +12,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 
 import com.zhang.my.test.animator.R;
+import com.zhang.my.test.animator.constant.PropertyName;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,10 +34,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        testAnimator();
+//        testAnimatorDuration();
+        testTranslateAnimator();
     }
 
-    private void testAnimator() {
+    private void testTranslateAnimator() {
+        int duration = 1000;
+
+        int width = iv_icon.getWidth();
+
+        ObjectAnimator xAnimator = ObjectAnimator.ofFloat(iv_icon, PropertyName.TRANSLATION_X, 3.35F * width, 0F);
+        xAnimator.setDuration(duration);
+        xAnimator.setInterpolator(new LinearInterpolator());
+//        xAnimator.start();
+
+        int height = iv_icon.getHeight();
+
+        ObjectAnimator yAnimator = ObjectAnimator.ofFloat(iv_icon, PropertyName.TRANSLATION_Y, -2.63F * height, -(2.63f + 1.5F) * height, 0F);
+        yAnimator.setDuration(duration);
+        yAnimator.setInterpolator(new TimeInterpolator() {
+            @Override
+            public float getInterpolation(float input) {
+                return (float) Math.sin(input);
+            }
+        });
+//        yAnimator.start();
+
+        AnimatorSet set = new AnimatorSet();
+        set.playTogether(xAnimator, yAnimator);
+        set.start();
+    }
+
+    private void testAnimatorDuration() {
         ValueAnimator animator = ValueAnimator.ofFloat(-4F, 4F);
         animator.setDuration(4000);
         animator.setInterpolator(new LinearInterpolator());
