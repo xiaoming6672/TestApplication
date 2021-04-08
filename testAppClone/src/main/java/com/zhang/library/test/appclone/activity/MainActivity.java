@@ -2,10 +2,10 @@ package com.zhang.library.test.appclone.activity;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.zhang.library.test.appclone.R;
 import com.zhang.library.test.appclone.util.AccountUtils;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 

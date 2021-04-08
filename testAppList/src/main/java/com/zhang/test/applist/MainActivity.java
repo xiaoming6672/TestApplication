@@ -1,26 +1,27 @@
 package com.zhang.test.applist;
 
 import android.app.Activity;
-import android.app.admin.DevicePolicyManager;
-import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.RemoteException;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.morgoo.droidplugin.pm.PluginManager;
+import com.morgoo.helper.compat.PackageManagerCompat;
 import com.zhang.library.adapter.callback.OnItemClickCallback;
+import com.zhang.library.utils.CollectionUtils;
 import com.zhang.library.utils.context.ContextUtils;
 import com.zhang.library.utils.context.FileUtils;
 
 import java.io.File;
 import java.util.Iterator;
 import java.util.List;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -59,13 +60,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String cachePath = FileUtils.getCachePath();
                 Log.d(TAG, "cachePath = " + cachePath);
 
-                FileUtils.copyFile(sourceDir, cachePath, "base.apk");
+                String targetFileName = data.packageName + ".apk";
+                FileUtils.copyFile(sourceDir, cachePath, targetFileName);
+
+                String targetFilePath = cachePath + targetFileName;
+
+                try {
+                    List<ApplicationInfo> list = PluginManager.getInstance().getInstalledApplications(PackageManagerCompat.INSTALL_REPLACE_EXISTING);
+                    if (CollectionUtils.isEmpty(list)) {
+                        Log.i(TAG, "installed applications is empty");
+                    } else {
+                        StringBuilder builder = new StringBuilder();
+                        for (ApplicationInfo info : list) {
+                            builder.append(info.packageName).append("\n");
+                        }
+                        Log.i(TAG, "installed applications list :" + builder.toString());
+                    }
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    int result = PluginManager.getInstance().deletePackage(data.packageName, 0);
+                    Log.w(TAG, "delete result = " + result);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    int result = PluginManager.getInstance().installPackage(targetFilePath, PackageManagerCompat.INSTALL_REPLACE_EXISTING);
+                    Log.d(TAG, "install result = " + result);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
             }
         });
         mRvContent.setAdapter(adapter);
 
         processQueryAppList();
-        provisionManagedProfile();
     }
 
     @Override
@@ -90,21 +121,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         adapter.getDataHolder().setDataList(list);
-    }
-
-    private static final int REQUEST_PROVISION_MANAGED_PROFILE = 1;
-
-    private void provisionManagedProfile() {
-        Intent intent = new Intent(DevicePolicyManager.ACTION_PROVISION_MANAGED_PROFILE);
-        intent.putExtra(DevicePolicyManager.EXTRA_PROVISIONING_DEVICE_ADMIN_PACKAGE_NAME,
-                mActivity.getPackageName());
-        if (intent.resolveActivity(mActivity.getPackageManager()) != null) {
-            startActivityForResult(intent, REQUEST_PROVISION_MANAGED_PROFILE);
-            mActivity.finish();
-        } else {
-            Toast.makeText(mActivity, "Device provisioning is not enabled. Stopping.",
-                    Toast.LENGTH_SHORT).show();
-        }
     }
 
 }
