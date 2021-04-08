@@ -1,3 +1,4 @@
+include ':testAppClone'
 include ':testAppList'
 include ':testanimator'
 include ':testcalendar'
