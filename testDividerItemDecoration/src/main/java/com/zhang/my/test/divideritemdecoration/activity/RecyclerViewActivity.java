@@ -146,7 +146,8 @@ public class RecyclerViewActivity extends AppCompatActivity {
                 break;
             case TYPE_CUSTOM_EQUAL:
                 if (mEqualV == null) {
-                    mEqualV = new EqualDividerItemDecoration(RecyclerView.VERTICAL, DIVIDER_SIZE, Color.RED);
+                    mEqualV = new EqualDividerItemDecoration(RecyclerView.VERTICAL, ResUtils.getResources().getDrawable(R.mipmap.guizi_biaoqian));
+//                    mEqualV = new EqualDividerItemDecoration(RecyclerView.VERTICAL, DIVIDER_SIZE, Color.RED);
                 }
                 decoration = mEqualV;
                 break;
@@ -183,7 +184,8 @@ public class RecyclerViewActivity extends AppCompatActivity {
                 break;
             case TYPE_CUSTOM_EQUAL:
                 if (mEqualH == null) {
-                    mEqualH = new EqualDividerItemDecoration(RecyclerView.HORIZONTAL, DIVIDER_SIZE, Color.RED);
+//                    mEqualH = new EqualDividerItemDecoration(RecyclerView.HORIZONTAL, DIVIDER_SIZE, Color.RED);
+                    mEqualH = new EqualDividerItemDecoration(RecyclerView.HORIZONTAL, ResUtils.getResources().getDrawable(R.mipmap.guizi_biaoqian));
                 }
                 decoration = mEqualH;
                 break;
