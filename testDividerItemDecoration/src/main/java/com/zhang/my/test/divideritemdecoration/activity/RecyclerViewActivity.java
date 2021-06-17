@@ -1,6 +1,7 @@
 package com.zhang.my.test.divideritemdecoration.activity;
 
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioGroup;
@@ -146,7 +147,9 @@ public class RecyclerViewActivity extends AppCompatActivity {
                 break;
             case TYPE_CUSTOM_EQUAL:
                 if (mEqualV == null) {
-                    mEqualV = new EqualDividerItemDecoration(RecyclerView.VERTICAL, ResUtils.getResources().getDrawable(R.mipmap.guizi_biaoqian));
+                    Drawable drawable = ResUtils.getResources().getDrawable(R.mipmap.guizi_jiazi_hong);
+                    mEqualV = new EqualDividerItemDecoration(RecyclerView.VERTICAL, drawable);
+                    mEqualV.setSize(drawable.getIntrinsicHeight());
 //                    mEqualV = new EqualDividerItemDecoration(RecyclerView.VERTICAL, DIVIDER_SIZE, Color.RED);
                 }
                 decoration = mEqualV;
@@ -185,7 +188,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
             case TYPE_CUSTOM_EQUAL:
                 if (mEqualH == null) {
 //                    mEqualH = new EqualDividerItemDecoration(RecyclerView.HORIZONTAL, DIVIDER_SIZE, Color.RED);
-                    mEqualH = new EqualDividerItemDecoration(RecyclerView.HORIZONTAL, ResUtils.getResources().getDrawable(R.mipmap.guizi_biaoqian));
+                    mEqualH = new EqualDividerItemDecoration(RecyclerView.HORIZONTAL, ResUtils.getResources().getDrawable(R.mipmap.guizi_jiazi_hong));
                 }
                 decoration = mEqualH;
                 break;
