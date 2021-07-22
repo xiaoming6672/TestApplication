@@ -1,3 +1,4 @@
+include ':testgridlayoutmanger'
 include ':testAppClone'
 include ':testAppList'
 include ':testanimator'
