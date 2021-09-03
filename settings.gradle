@@ -1,3 +1,4 @@
+include ':testPathView'
 include ':testgridlayoutmanger'
 include ':testAppClone'
 include ':testAppList'
