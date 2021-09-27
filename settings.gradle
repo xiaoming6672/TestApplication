@@ -1,3 +1,4 @@
+include ':bitmapsplit'
 include ':testPathView'
 include ':testgridlayoutmanger'
 include ':testAppClone'
