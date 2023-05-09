@@ -1,5 +1,6 @@
 package com.zhang.practice.kotlin
 
+import com.zhang.practice.kotlin.model.TestBean
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -14,6 +15,14 @@ class ExampleUnitTest {
         assertEquals(4, 2 + 2)
     }
 
-    fun testList() {
+    @Test
+    fun printTest() {
+        println("printTest()>>>Hello world!")
+    }
+
+    @Test
+    fun createBean() {
+        val testBean = TestBean("hello")
+        testBean.print()
     }
 }
