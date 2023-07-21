@@ -38,7 +38,7 @@ dependencies {
     implementation 'com.github.xiaoming6672:Library_utils:1.0.7'
     implementation 'com.github.zj565061763:views:1.1.6'
     implementation 'com.github.zj565061763:utils-extend:1.1.27'
-    implementation "androidx.core:core-ktx:+"
+    implementation "androidx.core:core-ktx:1.6.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 }
