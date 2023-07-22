@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainRoomActivity"
+    tools:ignore="HardcodedText,UsingOnClickInXml">
+
+    <Button
+        android:id="@+id/btn_create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClickCreate"
+        android:text="Create"
+        app:layout_constraintBottom_toTopOf="@id/btn_insert"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <Button
+        android:id="@+id/btn_insert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClickInsert"
+        android:text="Insert"
+        app:layout_constraintBottom_toTopOf="@id/btn_query_all"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_create" />
+
+    <Button
+        android:id="@+id/btn_query_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClickQueryAll"
+        android:text="Load all"
+        app:layout_constraintBottom_toTopOf="@id/et_id"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_insert" />
+
+    <!--<editor-fold desc="Query by Id">-->
+    <EditText
+        android:id="@+id/et_id"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:hint="Query by Id"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:maxLines="1"
+        android:paddingHorizontal="5dp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@id/et_code"
+        app:layout_constraintEnd_toStartOf="@id/btn_query_by_id"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_query_all" />
+
+    <Button
+        android:id="@+id/btn_query_by_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClickQueryById"
+        android:text="Query by Id"
+        app:layout_constraintBottom_toBottomOf="@id/et_id"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/et_id"
+        app:layout_constraintTop_toTopOf="@id/et_id" />
+    <!--</editor-fold>-->
+
+    <!--<editor-fold desc="Query by code">-->
+    <EditText
+        android:id="@+id/et_code"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:hint="Query by Id"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:maxLines="1"
+        android:paddingHorizontal="5dp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@id/btn_delete"
+        app:layout_constraintEnd_toStartOf="@id/btn_query_by_code"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_id" />
+
+    <Button
+        android:id="@+id/btn_query_by_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClickQueryByCode"
+        android:text="Query by Code"
+        app:layout_constraintBottom_toBottomOf="@id/et_code"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/et_code"
+        app:layout_constraintTop_toTopOf="@id/et_code" />
+    <!--</editor-fold>-->
+
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClickDelete"
+        android:text="Delete"
+        app:layout_constraintBottom_toTopOf="@id/space_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_code" />
+
+    <Space
+        android:id="@+id/space_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
