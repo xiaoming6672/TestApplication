@@ -5,6 +5,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.gson.Gson;
+
 import java.util.UUID;
 
 /**
@@ -23,6 +25,15 @@ public class UserDto {
     private String code;
     @ColumnInfo
     private String name;
+
+    /** 性别：0-未知；1.男；2.女 */
+    @ColumnInfo(defaultValue = "0", typeAffinity = ColumnInfo.INTEGER)
+    private Integer gender = 0;
+
+    @ColumnInfo
+    private String country;
+    @ColumnInfo
+    private int age;
 
 
     //<editor-fold desc="Getter and Setter">
@@ -51,18 +62,36 @@ public class UserDto {
         this.name = name;
     }
 
+    public Integer getGender() {
+        return gender;
+    }
 
+    public void setGender(Integer gender) {
+        this.gender = gender;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
     //</editor-fold>
 
 
     @NonNull
     @Override
     public String toString() {
-        return "UserDto{" +
-                "id=" + id +
-                ", code='" + code + '\'' +
-                ", name='" + name + '\'' +
-                '}';
+        return new Gson().toJson(this);
     }
 
 

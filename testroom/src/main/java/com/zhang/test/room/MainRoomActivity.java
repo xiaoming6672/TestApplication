@@ -106,6 +106,9 @@ public class MainRoomActivity extends AppCompatActivity {
         String[] array = code.split("-");
         mCurrent.setName(array[new Random().nextInt(array.length)]);
 
+        mCurrent.setGender(new Random().nextInt(2) + 1);
+        mCurrent.setCountry("CN");
+
         int result = mDbVM.updateUser(mCurrent);
         Log.i(TAG, "onClickUpdate: result=" + result);
     }
