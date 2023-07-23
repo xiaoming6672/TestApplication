@@ -14,6 +14,7 @@ import com.zhang.test.room.bean.UserDto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MainRoomActivity extends AppCompatActivity {
 
@@ -93,6 +94,20 @@ public class MainRoomActivity extends AppCompatActivity {
             mCurrent = mDbVM.queryUserByCode(code);
             Log.d(TAG, "onClickQueryByCode: mCurrent=" + (mCurrent == null ? "Null" : mCurrent.toString()));
         }).start();
+    }
+
+    public void onClickUpdate(View view) {
+        if (mCurrent == null) {
+            Toast.makeText(this, "Current user data is Null", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String code = mCurrent.getCode();
+        String[] array = code.split("-");
+        mCurrent.setName(array[new Random().nextInt(array.length)]);
+
+        int result = mDbVM.updateUser(mCurrent);
+        Log.i(TAG, "onClickUpdate: result=" + result);
     }
 
     public void onClickDelete(View view) {

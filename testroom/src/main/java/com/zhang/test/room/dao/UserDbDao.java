@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.zhang.test.room.bean.UserDto;
 
@@ -38,6 +39,14 @@ public interface UserDbDao {
      */
     @Insert
     void insertUserInfo(UserDto... users);
+
+    /**
+     * 更新用户信息
+     *
+     * @param user 用户信息
+     */
+    @Update
+    int updateUserInfo(UserDto user);
 
     /**
      * 删除用户数据

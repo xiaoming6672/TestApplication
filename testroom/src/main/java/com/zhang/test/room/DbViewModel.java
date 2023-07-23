@@ -74,6 +74,11 @@ public class DbViewModel extends AndroidViewModel {
         return dao.getUserByAccountCode(code);
     }
 
+    public int updateUser(UserDto user) {
+        UserDbDao dao = mUserDb.getUserDao();
+        return dao.updateUserInfo(user);
+    }
+
     public void deleteUser(UserDto user) {
         UserDbDao dao = mUserDb.getUserDao();
         int result = dao.deleteUserInfo(user);
